@@ -1,0 +1,10 @@
+# Force LF for shell scripts so Linux containers can exec them.
+# On Windows with core.autocrlf=true, these files would otherwise be
+# checked out with CRLF, turning the "#!/bin/sh" shebang into
+# "#!/bin/sh\r" and breaking ENTRYPOINT execution inside Docker images.
+*.sh text eol=lf
+docker/entrypoint.sh text eol=lf
+
+# Keep Dockerfiles LF as well (hygiene; CRLF can confuse some parsers).
+Dockerfile text eol=lf
+*.Dockerfile text eol=lf
